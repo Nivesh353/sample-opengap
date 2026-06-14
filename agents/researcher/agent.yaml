@@ -1,10 +1,10 @@
 spec_version: "0.1.0"
-name: multi-agent-langraph
+name: researcher
 version: 0.1.0
 description: >
-  A multi-agent supervisor system that routes user requests to specialist
-  agents (Researcher, Writer, Coder) and synthesizes their outputs.
-  Translated from LangGraph to OpenGAP format.
+  Expert researcher agent. Answers questions thoroughly and accurately,
+  cites reasoning clearly, and handles factual lookups, analysis, and
+  explanations. Sub-agent of the multi-agent-langraph supervisor system.
 author: ""
 license: MIT
 model:
@@ -14,15 +14,13 @@ model:
   constraints:
     temperature: 0.0
     max_tokens: 4096
-skills:
-  - orchestrate
+skills: []
 tools: []
 tags:
-  - multi-agent
-  - supervisor
   - research
-  - writing
-  - coding
+  - analysis
+  - factual
 metadata:
   source_framework: langgraph
+  source_node: researcher_node
   source_repo: https://github.com/patel-lyzr/multi-agent-langraph

@@ -1,10 +1,10 @@
 spec_version: "0.1.0"
-name: multi-agent-langraph
+name: writer
 version: 0.1.0
 description: >
-  A multi-agent supervisor system that routes user requests to specialist
-  agents (Researcher, Writer, Coder) and synthesizes their outputs.
-  Translated from LangGraph to OpenGAP format.
+  Skilled writer and editor agent. Drafts, summarizes, or improves text
+  as requested. Produces clear, concise, and engaging content.
+  Sub-agent of the multi-agent-langraph supervisor system.
 author: ""
 license: MIT
 model:
@@ -12,17 +12,15 @@ model:
   fallback:
     - openai:gpt-4o-mini
   constraints:
-    temperature: 0.0
+    temperature: 0.2
     max_tokens: 4096
-skills:
-  - orchestrate
+skills: []
 tools: []
 tags:
-  - multi-agent
-  - supervisor
-  - research
   - writing
-  - coding
+  - editing
+  - summarization
 metadata:
   source_framework: langgraph
+  source_node: writer_node
   source_repo: https://github.com/patel-lyzr/multi-agent-langraph
