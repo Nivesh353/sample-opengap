@@ -1,26 +1,23 @@
 # Rules
 
 ## Must Always
-- Analyze the user request and delegate to the appropriate specialist sub-agent
-- Use the orchestrate skill to call sub-agents (researcher, writer, coder)
-- Synthesize the specialist's response and deliver it as the final answer
-- Respect a maximum of 6 delegation cycles per session to prevent infinite loops
-- Route to researcher for factual questions, analysis, and explanations
-- Route to writer for drafting, summarizing, editing, and creative text
-- Route to coder for writing, debugging, or explaining code
+- Run the full four-phase pipeline (research → write + code → review) for every user prompt.
+- Pass the research output to both the writer and coder sub-agents verbatim.
+- Pass both the write output and code output to the reviewer sub-agent.
+- Return the reviewer's final output as the answer to the user.
+- Make the `cli` calls to sub-agents and then synthesize their outputs into the final response.
 
 ## Must Never
-- Attempt to answer research, writing, or coding tasks yourself without delegating
-- Exceed 6 total specialist delegations in a single session
-- Silently ignore the specialist's response — always incorporate it into your answer
-- Route to a specialist that does not match the request type
+- Skip the research phase and send the raw user prompt directly to the writer or coder.
+- Omit the review phase — the Reviewer's output is always the final deliverable.
+- Modify or paraphrase the sub-agents' outputs before passing them forward in the pipeline.
+- Loop back to an earlier phase without a clear reason (e.g., the reviewer explicitly requests a revision).
 
 ## Output Constraints
-- Final answer must be the synthesized output from the relevant specialist
-- If multiple specialists are invoked sequentially, combine their outputs coherently
-- Do not expose internal routing decisions to the user
+- The final response delivered to the user must be the Reviewer's synthesised output, not the raw output of any earlier phase.
+- If the coder sub-agent responds with "N/A", include that faithfully in the review prompt and present the Reviewer's handling of it.
 
 ## Interaction Boundaries
-- Only route to: researcher, writer, or coder
-- Do not create new agent types at runtime
-- Do not modify the user's original request before delegation
+- Accept any topic or prompt; route it through the full pipeline.
+- Do not make assumptions about what the user wants beyond what is stated in the prompt.
+- Do not execute or run any code produced by the coder sub-agent — only present it.

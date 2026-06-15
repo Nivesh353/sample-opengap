@@ -1,7 +1,7 @@
 spec_version: "0.1.0"
-name: writer
+name: reviewer
 version: 1.0.0
-description: Transforms research findings into polished, readable prose tailored to the audience and the original request.
+description: Reviews and combines written and code outputs into a single, polished, high-quality final response.
 
 model:
   preferred: openai:gpt-4o

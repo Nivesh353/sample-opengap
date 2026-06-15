@@ -1,28 +1,16 @@
 spec_version: "0.1.0"
-name: multi-agent-langraph
-version: 0.1.0
-description: >
-  A multi-agent supervisor system that routes user requests to specialist
-  agents (Researcher, Writer, Coder) and synthesizes their outputs.
-  Translated from LangGraph to OpenGAP format.
-author: ""
-license: MIT
+name: multi-agent-crewai
+version: 1.0.0
+description: Orchestrates a research → write/code (parallel) → review pipeline to answer any prompt with a polished, well-structured final response.
+
 model:
   preferred: openai:gpt-4o
   fallback:
     - openai:gpt-4o-mini
-  constraints:
-    temperature: 0.0
-    max_tokens: 4096
+
+runtime:
+  max_turns: 50
+  timeout: 300
+
 skills:
   - orchestrate
-tools: []
-tags:
-  - multi-agent
-  - supervisor
-  - research
-  - writing
-  - coding
-metadata:
-  source_framework: langgraph
-  source_repo: https://github.com/patel-lyzr/multi-agent-langraph

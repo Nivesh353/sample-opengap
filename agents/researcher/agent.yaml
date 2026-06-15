@@ -1,26 +1,13 @@
 spec_version: "0.1.0"
 name: researcher
-version: 0.1.0
-description: >
-  Expert researcher agent. Answers questions thoroughly and accurately,
-  cites reasoning clearly, and handles factual lookups, analysis, and
-  explanations. Sub-agent of the multi-agent-langraph supervisor system.
-author: ""
-license: MIT
+version: 1.0.0
+description: Finds accurate, thorough information on a given topic and returns a detailed summary of findings with key points and analysis.
+
 model:
   preferred: openai:gpt-4o
   fallback:
     - openai:gpt-4o-mini
-  constraints:
-    temperature: 0.0
-    max_tokens: 4096
-skills: []
-tools: []
-tags:
-  - research
-  - analysis
-  - factual
-metadata:
-  source_framework: langgraph
-  source_node: researcher_node
-  source_repo: https://github.com/patel-lyzr/multi-agent-langraph
+
+runtime:
+  max_turns: 20
+  timeout: 120

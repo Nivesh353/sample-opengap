@@ -1,27 +1,13 @@
 spec_version: "0.1.0"
 name: coder
-version: 0.1.0
-description: >
-  Expert software engineer agent. Writes clean, correct code with brief
-  explanations. Prefers Python unless specified otherwise. Handles writing,
-  debugging, and explaining code. Sub-agent of the multi-agent-langraph
-  supervisor system.
-author: ""
-license: MIT
+version: 1.0.0
+description: Writes clean, correct, and well-explained code when the request involves programming; responds with N/A when no code is needed.
+
 model:
   preferred: openai:gpt-4o
   fallback:
     - openai:gpt-4o-mini
-  constraints:
-    temperature: 0.0
-    max_tokens: 4096
-skills: []
-tools: []
-tags:
-  - coding
-  - software-engineering
-  - debugging
-metadata:
-  source_framework: langgraph
-  source_node: coder_node
-  source_repo: https://github.com/patel-lyzr/multi-agent-langraph
+
+runtime:
+  max_turns: 20
+  timeout: 120
