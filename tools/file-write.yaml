@@ -1,0 +1,47 @@
+name: file-write
+description: Write content to a file on the local filesystem, creating it if it does not exist
+version: 1.0.0
+
+input_schema:
+  type: object
+  properties:
+    path:
+      type: string
+      description: Path to the file to write (relative or absolute)
+    content:
+      type: string
+      description: Content to write to the file
+    encoding:
+      type: string
+      description: File encoding (default utf-8)
+    mode:
+      type: string
+      description: Write mode - 'w' to overwrite (default) or 'a' to append
+  required:
+    - path
+    - content
+
+output_schema:
+  type: object
+  properties:
+    success:
+      type: boolean
+      description: Whether the write succeeded
+    path:
+      type: string
+      description: The path that was written to
+    error:
+      type: string
+      description: Error message if the write failed
+
+implementation:
+  type: script
+  script: file-write.py
+  runtime: python3
+  timeout: 10
+
+annotations:
+  requires_confirmation: false
+  read_only: false
+  idempotent: false
+  cost: low

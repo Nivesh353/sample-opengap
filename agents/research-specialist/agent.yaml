@@ -1,0 +1,19 @@
+spec_version: "0.1.0"
+name: research-specialist
+version: 1.0.0
+description: Expert research specialist that gathers comprehensive and accurate information on given topics from multiple sources
+
+model:
+  preferred: openai:gpt-4o
+  fallback:
+    - anthropic:claude-sonnet-4-6
+  constraints:
+    temperature: 0.1
+    max_tokens: 8192
+
+runtime:
+  max_turns: 30
+  timeout: 300
+
+tools:
+  - web-search

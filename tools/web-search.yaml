@@ -1,0 +1,43 @@
+name: web-search
+description: Search the web for current and relevant information on a query using the Serper search API
+version: 1.0.0
+
+input_schema:
+  type: object
+  properties:
+    query:
+      type: string
+      description: The search query to look up
+    num_results:
+      type: integer
+      description: Number of search results to return (default 10)
+  required:
+    - query
+
+output_schema:
+  type: object
+  properties:
+    results:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+          url:
+            type: string
+          snippet:
+            type: string
+      description: List of search results with title, URL, and snippet
+
+implementation:
+  type: script
+  script: web-search.py
+  runtime: python3
+  timeout: 30
+
+annotations:
+  requires_confirmation: false
+  read_only: true
+  idempotent: false
+  cost: low

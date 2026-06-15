@@ -1,0 +1,19 @@
+spec_version: "0.1.0"
+name: data-analyst
+version: 1.0.0
+description: Skilled data analyst that analyzes gathered information to extract key insights, patterns, and conclusions
+
+model:
+  preferred: openai:gpt-4o
+  fallback:
+    - anthropic:claude-sonnet-4-6
+  constraints:
+    temperature: 0.2
+    max_tokens: 8192
+
+runtime:
+  max_turns: 30
+  timeout: 300
+
+tools:
+  - file-read

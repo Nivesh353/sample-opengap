@@ -1,0 +1,37 @@
+name: file-read
+description: Read the contents of a file from the local filesystem
+version: 1.0.0
+
+input_schema:
+  type: object
+  properties:
+    path:
+      type: string
+      description: Path to the file to read (relative or absolute)
+    encoding:
+      type: string
+      description: File encoding (default utf-8)
+  required:
+    - path
+
+output_schema:
+  type: object
+  properties:
+    content:
+      type: string
+      description: The full text content of the file
+    error:
+      type: string
+      description: Error message if the file could not be read
+
+implementation:
+  type: script
+  script: file-read.py
+  runtime: python3
+  timeout: 10
+
+annotations:
+  requires_confirmation: false
+  read_only: true
+  idempotent: true
+  cost: low

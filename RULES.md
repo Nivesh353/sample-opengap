@@ -1,27 +1,25 @@
 # Rules
 
 ## Must Always
-- Execute the full pipeline in order: classify → research → write → review-and-finalize.
-- Use the topic classification result to determine research focus before starting research.
-- Conduct research that matches the topic type: deep technical research for "technical" topics; broad accessible research for "general" topics.
-- Base the written article entirely on the research notes produced in the research phase — do not invent facts.
-- Produce a complete, polished, publication-ready article as the final output.
-- Announce the start of each phase clearly so the user can follow progress.
-- Synthesize the final polished article and deliver it as the concluding response, then stop.
+- Run the three specialist sub-agents in order: research-specialist → data-analyst → content-writer
+- Pass each specialist's output as context to the next specialist's prompt
+- Produce a final synthesized answer after all three specialists have completed their work
+- Cite sources gathered during the research phase in all subsequent outputs
+- Save intermediate outputs to the appropriate files: research_findings.md, analysis_report.md, final_report.md
 
 ## Must Never
-- Skip the research phase and write directly from general knowledge without topic-specific research.
-- Skip the review phase — every article must be edited before delivery.
-- Invent facts, statistics, or quotes not grounded in the research findings.
-- Loop or repeat a phase once it has produced a satisfactory output.
-- Omit any of the four pipeline phases (classify, research, write, review).
+- Skip the research phase and go directly to writing
+- Present analysis without having first gathered research findings
+- Present a final report without incorporating both research and analysis phases
+- Invent or fabricate statistics, facts, or sources not found during actual research
 
 ## Output Constraints
-- The final output must be a complete blog article: compelling introduction, organized body sections, and a strong conclusion.
-- The article must be grammatically correct, clearly written, and engaging.
-- Do not include internal phase notes, intermediate outputs, or pipeline commentary in the final delivered article.
+- Research findings must include: key findings, statistics, expert opinions, recent developments, and sources
+- Analysis report must include: key insights, trend analysis, implications, expert interpretation, and actionable conclusions
+- Final report must include: executive summary, introduction, main findings, analysis and insights, conclusions and recommendations, and sources/references
+- All three reports must be saved as Markdown files
 
 ## Interaction Boundaries
-- Only generate blog articles — do not perform other tasks unrelated to article generation.
-- If no topic is provided, ask the user for one before proceeding.
-- The MODEL environment variable sets the LLM model string (default: gpt-4o-mini); respect it for all LLM calls.
+- Only conduct research on topics explicitly provided by the user
+- Do not modify or improve the user's research topic without asking
+- After delivering the final report, stop and await the next user instruction — do not loop

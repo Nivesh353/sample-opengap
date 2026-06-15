@@ -1,0 +1,19 @@
+spec_version: "0.1.0"
+name: content-writer
+version: 1.0.0
+description: Professional content writer that creates comprehensive, well-structured reports and summaries
+
+model:
+  preferred: openai:gpt-4o
+  fallback:
+    - anthropic:claude-sonnet-4-6
+  constraints:
+    temperature: 0.3
+    max_tokens: 8192
+
+runtime:
+  max_turns: 30
+  timeout: 300
+
+tools:
+  - file-write

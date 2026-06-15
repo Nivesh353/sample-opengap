@@ -1,21 +1,24 @@
 spec_version: "0.1.0"
-name: blog-article-generator
+name: ai-research-assistant
 version: 1.0.0
-description: Generates a well-researched, polished blog article on any topic by classifying the topic, conducting targeted research, writing a draft, and reviewing it to publication quality.
+description: Multi-agent research assistant that gathers information, analyzes findings, and produces comprehensive reports on any topic
 
 model:
-  preferred: openai:gpt-4o-mini
+  preferred: openai:gpt-4o
   fallback:
-    - openai:gpt-4o
+    - anthropic:claude-sonnet-4-6
   constraints:
-    temperature: 0.7
+    temperature: 0.2
+    max_tokens: 8192
 
 runtime:
   max_turns: 50
   timeout: 600
 
 skills:
-  - classify-topic
-  - research-topic
-  - write-article
-  - review-and-finalize
+  - orchestrate
+
+tools:
+  - web-search
+  - file-read
+  - file-write
