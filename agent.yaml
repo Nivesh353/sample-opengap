@@ -1,0 +1,21 @@
+spec_version: "0.1.0"
+name: blog-article-generator
+version: 1.0.0
+description: Generates a well-researched, polished blog article on any topic by classifying the topic, conducting targeted research, writing a draft, and reviewing it to publication quality.
+
+model:
+  preferred: openai:gpt-4o-mini
+  fallback:
+    - openai:gpt-4o
+  constraints:
+    temperature: 0.7
+
+runtime:
+  max_turns: 50
+  timeout: 600
+
+skills:
+  - classify-topic
+  - research-topic
+  - write-article
+  - review-and-finalize
